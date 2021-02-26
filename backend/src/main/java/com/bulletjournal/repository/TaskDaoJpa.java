@@ -1260,7 +1260,6 @@ public class TaskDaoJpa extends ProjectItemDaoJpa<TaskContent> {
         Timestamp ts =task.getCreatedAt();
         System.out.println(ts);
 
-
         System.out.println(targetEmails);
         Map<String, Object> data = new HashMap<>();
         data.put("task_owner", task.getOwner());
@@ -1271,8 +1270,7 @@ public class TaskDaoJpa extends ProjectItemDaoJpa<TaskContent> {
         data.put("due_date", task.getDueDate());
         data.put("contents", params.getContents());
         Template template = freemarkerConfig.getTemplate("TaskEmail.ftl");
-        String readyParsedTemplate = FreeMarkerTemplateUtils
-            .processTemplateIntoString(template, data);
-        System.out.println(readyParsedTemplate);
+        String htmlContent = FreeMarkerTemplateUtils.processTemplateIntoString(template, data);
+        System.out.println(htmlContent);
     }
 }
